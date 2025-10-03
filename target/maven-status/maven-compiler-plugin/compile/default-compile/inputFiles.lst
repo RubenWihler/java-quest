@@ -1,1 +1,12 @@
-/home/wihler/labs/java/java-quest/src/main/java/io/github/RubenWihler/JavaQuest/App.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/App.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Exceptions/AlredyInitializedException.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Exceptions/NotInitializedException.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Core/Map/Map.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Core/Map/MapBuilder.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Core/Map/Tile.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Core/Player.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Core/Resources/ResourceHandler.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Core/Resources/ResourceType.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Core/Round.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/Game.java
+/home/wihler/labs/java/java-quest/src/main/java/JavaQuest/Game/GameManager.java

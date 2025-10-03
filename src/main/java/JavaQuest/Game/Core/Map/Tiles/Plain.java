@@ -1,0 +1,10 @@
+package JavaQuest.Game.Core.Map.Tiles;
+
+import JavaQuest.Game.Core.Map.Tile;
+
+public class Plain extends Tile {
+    @Override
+    public String getSymbol(){
+        return super.getSymbol().replace("?", "░");
+    }
+}

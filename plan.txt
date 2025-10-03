@@ -1,0 +1,103 @@
+Concept General:
+    titre: JavaQuest
+    genre: Jeu de strategie tour par tour
+    but: Chaque joueur commence avec quelques territoires et ressources. Le but
+    est de contrôler un maximum de terrains à la fin de la partie.
+
+
+Ressources:
+
+    1. Nourriture – produite par les plaines/fermes, sert à nourrir la population et les armées.
+    2. Bois – produit par les forêts, sert à la construction et aux unités légères.
+    3. Pierre/Métal – produit par les montagnes, sert aux fortifications et unités lourdes.
+    4. Or – produit par certaines tuiles spéciales ou bâtiments, sert de monnaie universelle pour échanges.
+
+    - Les ressources sont collectées chaque tour.
+    - Certaines unités/bâtiments coûtent un entretien en ressources chaque tour (ex.nourriture pour soldats).
+    - Manque de ressources = malus (famine, désertions, bâtiments inactifs)
+
+
+Terrains et cartes:
+
+    Matrix de cases-> tile
+
+    • Plaine → + nourriture
+    • Forêt → + bois, bonus défensif léger
+    • Montagne → + pierre/métal, bonus défensif fort, mais difficile à conquérir
+    • Eau → barrière, sauf avec unités spéciales (bateaux)
+    • Désert → faible production, risque d’événements négatifs
+    • Tuile spéciale → ruines, mines d’or, oasis (bonus rare)
+
+
+Batiments:
+
+    Chaque tuile peut contenur un batiment qui ameliore sa prod ou sa defense
+
+    • Ferme → + nourriture
+    • Scierie → + bois
+    • Mine → + pierre/métal
+    • Marché → échange de ressources avec perte
+    • Fort → bonus défensif élevé
+    • Palissade → bonus défensif
+
+
+Armée et conquête:
+
+    Recrutement d’unités :
+    • Soldat léger (coût nourriture + bois) → rapide, faible puissance.
+    • Soldat lourd (coût nourriture + métal) → lent, puissant.
+    • Archers (coût nourriture + bois) → bonus en forêt.
+    • Cavalerie (coût nourriture + or) → bonus en plaine, mobilité.
+
+    Conquêtes :
+    • Pour attaquer une tuile ennemie, il faut y envoyer une armée.
+    • Résolution du combat :
+    o Force = unités + bonus terrain + fortifications.
+    o Si attaquant > défenseur → conquête réussie.
+    o Sinon → défenseur conserve la tuile, pertes pour les deux camps.
+
+
+Événements et challenges:
+
+    • Catastrophes naturelles : sécheresse, inondation, tremblement de terre.
+    • Rébellion interne : si le joueur gère mal ses ressources.
+    • Découvertes : mine d’or, oasis, ruines (bonus unique).
+    • Quêtes secondaires : contrôler X forêts pour obtenir des archers spéciaux, etc.
+
+
+Conditions de victoire:
+
+    • Victoire par territoire : celui qui possède le plus de tuiles après un nombre de tours fixé.
+    • Victoire militaire : élimination de tous les adversaires.
+    • Victoire économique : atteindre un certain stock d’or.
+    • Victoire spéciale (optionnelle) : accomplir un objectif secret donné au début.
+
+
+Progression et rejouabilité:
+
+    • Parties configurables (taille de carte, nombre de joueurs, durée en tours).
+    • Ressources et événements aléatoires pour renouveler les parties.
+    • Différents styles de jeu possibles : expansion militaire, économie, défense
+
+
+Aspects techniques (Java):
+    • Représentation de la carte : grille (2D array ou collection de tuiles).
+    • Classe Tuile : type de terrain, propriétaire, bâtiment, ressources produites.
+    • Classe Joueur : ressources, armée, tuiles possédées.
+    • Classe Armée : unités, force totale, position.
+    • Gestion des tours : boucle de jeu où chaque joueur joue successivement.
+    • IA (plus tard) : adversaire basique qui choisit entre expansion, défense ou production.
+
+
+--------------------------------------------------------------------------------------------
+
+Première étape : les bases du jeu
+
+    1. Réalisez les classes et les structures de données pour gérer l’ensemble des éléments décrits précédemment
+    2. Générez une Map ini]ale aléatoire de 20*20 avec les tuiles qui possèdent leurs ressources, un type, etc…
+    3. Affectez 5 tuiles aux 2 joueurs avec un solde d’argent au départ.
+    4. Réaliser le marché ou l’on peut acheter des ressources
+    5. Réalisez la représenta]on en mode console de la Map
+    6. Réalisez le Game-Manager permefant aux 2 joueurs de jouer tour à tour. A chaque tour un joueur peut :
+        a. soit inves]r dans une zone, acheter des ressources ou des unités
+        b. soit se déplacer et conquérir
