@@ -1,5 +1,6 @@
 package JavaQuest.Game.Core;
 
+import java.io.IOException;
 import java.util.*;
 
 import JavaQuest.Game.Game;
@@ -15,15 +16,22 @@ public final class Round {
         this.game = game;
     }
 
-    public void start(){
+    public void start() throws IOException, InterruptedException {
         var map = this.game.getMap();
-        this.updateMap(map);
-        Renderer.renderMap(map);
 
         for (Player player : this.game.getPlayers()){
             collectResources(player, map);
-            playerAction(player);
+            updateMap(map);
+            // playerAction(player);
+
+            Renderer.getUi()
+                .updateMap(map)
+                .refresh()
+                .pollEvents()
+                .refresh();
         }
+
+        Thread.sleep(50);
     }
 
     private void updateMap(Map map){

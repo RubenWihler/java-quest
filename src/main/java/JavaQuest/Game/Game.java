@@ -1,10 +1,12 @@
 package JavaQuest.Game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import JavaQuest.Game.Inputs.*;
+import JavaQuest.Game.Rendering.Renderer;
 import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Core.Round;
 import JavaQuest.Game.Core.Map.Map;
@@ -19,7 +21,7 @@ public final class Game {
     private List<Player> players;
     private Map map;
 
-    public Game(GameConfig config){
+    public Game(GameConfig config) throws IOException {
         this.config = config;
         this.round_index = 0;
         this.round = null;
@@ -40,11 +42,11 @@ public final class Game {
         return this.map;
     }
 
-    public void start(){
+    public void start() throws IOException, InterruptedException {
         roundLoop();
     }
 
-    private void roundLoop(){
+    private void roundLoop() throws IOException, InterruptedException {
         boolean runing = true;
 
         while(runing){
@@ -58,7 +60,8 @@ public final class Game {
 
         for (int i = 0; i < this.config.playerCount; i++){
             System.out.println("Enter name for player " + (i + 1) + ":");
-            String playerName = InputManager.readLine();
+            // String playerName = InputManager.readLine();
+            String playerName = "P"+(i+1);
 
             this.players.add(new Player(i, playerName));
         }

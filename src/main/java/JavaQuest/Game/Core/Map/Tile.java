@@ -2,12 +2,16 @@ package JavaQuest.Game.Core.Map;
 
 import java.util.Random;
 
+import com.googlecode.lanterna.TextColor.ANSI;
+
 import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Rendering.*;
 import JavaQuest.Game.Core.Map.Builds.Build;
+import JavaQuest.Game.Core.Map.Tiles.Desert;
 import JavaQuest.Game.Core.Map.Tiles.Forest;
 import JavaQuest.Game.Core.Map.Tiles.Montain;
 import JavaQuest.Game.Core.Map.Tiles.Plain;
+import JavaQuest.Game.Core.Map.Tiles.Water;
 import JavaQuest.Game.Core.Resources.ResourceHandler;
 import JavaQuest.Game.Core.Resources.ResourceType;
 
@@ -28,6 +32,10 @@ public class Tile {
 
     public Build getBuild(){
         return this.build;
+    }
+
+    public ANSI getColor(){
+        return ANSI.DEFAULT;
     }
 
     public int getDefense(){
@@ -51,32 +59,22 @@ public class Tile {
     }
 
     public String getSymbol(){
-        String res = "";
-
-        if (this.owner != null){
-            switch(this.owner.getId()){
-                case 0: res += Renderer.GREEN;  break;
-                case 1: res += Renderer.RED;    break;
-            }
-        }
-
-        res += "?";
-
-        if (this.owner != null){
-            res += Renderer.RESET;
-        }
-
-        return res;
+        return "?";
     }
 
     public static Tile getRandom(){
         var rand = new Random();
-        int type = rand.nextInt(2);
+        int type = rand.nextInt(8);
 
         switch(type){
             case 0: return new Plain();
-            case 1: return new Forest();
-            case 2: return new Montain();
+            case 1: return new Plain();
+            case 2: return new Plain();
+            case 3: return new Forest();
+            case 4: return new Forest();
+            case 5: return new Montain();
+            case 6: return new Water();
+            case 7: return new Desert();
         }
 
         return new Plain();

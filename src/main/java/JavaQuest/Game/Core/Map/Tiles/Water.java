@@ -4,14 +4,14 @@ import com.googlecode.lanterna.TextColor.ANSI;
 
 import JavaQuest.Game.Core.Map.Tile;
 
-public class Montain extends Tile {
+public class Water extends Tile {
     @Override
     public ANSI getColor(){
-        return ANSI.BLACK_BRIGHT;
+        return ANSI.BLUE_BRIGHT;
     }
 
     @Override
     public String getSymbol(){
-        return "⛰";
+        return "␥";
     }
 }

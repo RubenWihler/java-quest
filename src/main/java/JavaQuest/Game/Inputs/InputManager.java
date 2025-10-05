@@ -1,11 +1,15 @@
 package JavaQuest.Game.Inputs;
 
 import JavaQuest.Exceptions.*;
+import JavaQuest.Game.Rendering.Renderer;
+
+import java.io.IOException;
 import java.util.*;
 
-public class InputManager {
-    private Scanner scanner;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.screen.Screen;
 
+public class InputManager {
     private static InputManager instance;
 
     public static InputManager getInstance(){
@@ -25,11 +29,8 @@ public class InputManager {
         return instance;
     }
 
-    public InputManager(){
-        this.scanner = new Scanner(System.in);
-    }
-
     public static String readLine(){
-        return getInstance().scanner.nextLine();
+        return null;
+        // return getInstance().scanner.nextLine();
     }
 }

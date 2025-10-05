@@ -1,11 +1,15 @@
 package JavaQuest.Game.Core;
 
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.TextColor.ANSI;
+
 import JavaQuest.Game.Core.Resources.ResourceHandler;
 
 public final class Player {
     private int id;
     private String name;
     private ResourceHandler resources;
+    private ANSI color;
 
     public int getId(){
         return this.id;
@@ -13,6 +17,10 @@ public final class Player {
 
     public String getName(){
         return this.name;
+    }
+
+    public ANSI getColor(){
+        return this.color;
     }
 
     public ResourceHandler getResourceHandler(){

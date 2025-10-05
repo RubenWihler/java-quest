@@ -1,5 +1,7 @@
 package JavaQuest.Game;
 
+import java.io.IOException;
+
 import JavaQuest.Exceptions.AlredyInitializedException;
 import JavaQuest.Exceptions.NotInitializedException;
 
@@ -30,7 +32,7 @@ public final class GameManager {
         return GameManager.getInstance().current_game;
     }
 
-    public Game newGame(GameConfig config){
+    public Game newGame(GameConfig config) throws IOException{
         this.current_game = new Game(config);
         return this.current_game;
     }
