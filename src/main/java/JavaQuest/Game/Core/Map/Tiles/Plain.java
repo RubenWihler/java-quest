@@ -5,6 +5,10 @@ import com.googlecode.lanterna.TextColor.ANSI;
 import JavaQuest.Game.Core.Map.Tile;
 
 public class Plain extends Tile {
+    public Plain(int x, int y) {
+        super(x, y);
+    }
+
     @Override
     public ANSI getColor(){
         return ANSI.GREEN_BRIGHT;
@@ -14,5 +18,10 @@ public class Plain extends Tile {
     public String getSymbol(){
         // return "░";
         return "";
+    }
+
+    @Override
+    public String getBiome(){
+        return "Plain";
     }
 }

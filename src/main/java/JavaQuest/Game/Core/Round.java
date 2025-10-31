@@ -11,27 +11,40 @@ import JavaQuest.Game.Core.Map.Map;
 
 public final class Round {
     private Game game;
+    private Player currentPlayer;
+    private int id;
 
-    public Round(Game game){
+    public Round(Game game, int id){
         this.game = game;
+        this.id = id;
+    }
+
+    public Player getCurrentPlayer(){
+        return this.currentPlayer;
+    }
+
+    public int getID(){
+        return this.id;
     }
 
     public void start() throws IOException, InterruptedException {
         var map = this.game.getMap();
 
         for (Player player : this.game.getPlayers()){
+            this.currentPlayer = player;
             collectResources(player, map);
             updateMap(map);
             // playerAction(player);
 
             Renderer.getUi()
+                .updateGameInfo(game)
                 .updateMap(map)
                 .refresh()
                 .pollEvents()
                 .refresh();
         }
 
-        Thread.sleep(50);
+        Thread.sleep(10);
     }
 
     private void updateMap(Map map){

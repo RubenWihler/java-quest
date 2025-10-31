@@ -5,6 +5,10 @@ import com.googlecode.lanterna.TextColor.ANSI;
 import JavaQuest.Game.Core.Map.Tile;
 
 public class Forest extends Tile {
+    public Forest(int x, int y) {
+        super(x, y);
+    }
+
     @Override
     public ANSI getColor(){
         return ANSI.CYAN_BRIGHT;
@@ -14,5 +18,10 @@ public class Forest extends Tile {
     public String getSymbol(){
         // return "▒";
         return "";
+    }
+
+    @Override
+    public String getBiome(){
+        return "Forest";
     }
 }
