@@ -31,14 +31,15 @@ public class TileElement extends Panel {
     public int x, y;
 
     public void select(){
-        ANSI colorBg = ANSI.RED_BRIGHT;
+        ANSI colorBg = ANSI.MAGENTA;
         ANSI colorFg = (tile.getOwner() != null) ? tile.getOwner().getColor() : ANSI.WHITE;
         this.setTheme(new SimpleTheme(colorFg, colorBg));
     }
 
     public void unselect(){
-        ANSI colorBg = tile.getColor();
-        ANSI colorFg = (tile.getOwner() != null) ? tile.getOwner().getColor() : ANSI.WHITE;
+        var owner = tile.getOwner();
+        ANSI colorBg = (owner != null) ? owner.getColor() : tile.getColor();
+        ANSI colorFg = (owner != null) ? owner.getColor() : ANSI.WHITE;
         this.setTheme(new SimpleTheme(colorFg, colorBg));
     }
  
@@ -49,10 +50,9 @@ public class TileElement extends Panel {
         this.y = y;
 
         Player owner = tile.getOwner();
-        ANSI colorBg = tile.getColor();
         ANSI colorFg = (owner != null) ? owner.getColor() : ANSI.WHITE;
+        ANSI colorBg = (owner != null) ? owner.getColor() : tile.getColor();
         Theme theme = new SimpleTheme(colorFg, colorBg);
-        //setting tile color to their owner player color
 
         this.setLayoutData(GridLayout.createLayoutData(Alignment.FILL, Alignment.FILL))
             .setPreferredSize(new TerminalSize(2, 1))

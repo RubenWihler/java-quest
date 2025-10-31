@@ -17,7 +17,21 @@ public class App {
         Renderer.init();
         InputManager.init();
         var game = GameManager.init().newGame(config);
-        game.start();
+
+        try {
+            game.start();
+        } catch (Exception e) {
+            var sb = new StringBuilder();
+
+            sb.append(e.toString() + "\n");
+            sb.append("stack trace:\n");
+
+            for (var ste : e.getStackTrace()) {
+                sb.append(ste.toString() + "\n");
+            }
+
+            Log.logError(sb.toString());
+        }
 
         Renderer.getInstance().destroy();
     }

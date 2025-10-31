@@ -13,6 +13,7 @@ public final class Round {
     private Game game;
     private Player currentPlayer;
     private int id;
+    private boolean flag_player_turn_finished = false;
 
     public Round(Game game, int id){
         this.game = game;
@@ -23,6 +24,10 @@ public final class Round {
         return this.currentPlayer;
     }
 
+    public void setPlayerTurnFinished(){
+        this.flag_player_turn_finished = true;
+    }
+
     public int getID(){
         return this.id;
     }
@@ -31,17 +36,19 @@ public final class Round {
         var map = this.game.getMap();
 
         for (Player player : this.game.getPlayers()){
+            this.flag_player_turn_finished = false;
             this.currentPlayer = player;
             collectResources(player, map);
             updateMap(map);
-            // playerAction(player);
 
-            Renderer.getUi()
-                .updateGameInfo(game)
-                .updateMap(map)
-                .refresh()
-                .pollEvents()
-                .refresh();
+            while (!this.flag_player_turn_finished){
+                Renderer.getUi()
+                    .updateGameInfo(game)
+                    .updateMap(map)
+                    .refresh()
+                    .pollEvents()
+                    .refresh();
+            }
         }
 
         Thread.sleep(10);

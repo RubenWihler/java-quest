@@ -28,9 +28,11 @@ import com.googlecode.lanterna.gui2.dialogs.TextInputDialogBuilder;
 
 import JavaQuest.Log;
 import JavaQuest.Game.Game;
+import JavaQuest.Game.GameManager;
 import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Core.Map.Map;
 import JavaQuest.Game.Core.Map.Tile;
+import JavaQuest.Game.Core.Market.Market;
 import JavaQuest.Game.Rendering.Renderer;
 import JavaQuest.Game.Rendering.ui.Components.GameInfoElement;
 import JavaQuest.Game.Rendering.ui.Components.MapElement;
@@ -75,6 +77,8 @@ public class UiHandler {
         this.window = new BasicWindow();
         window.setHints(Arrays.asList(Window.Hint.FULL_SCREEN));
         window.setTitle("Java Quest");
+
+        window.setTheme(LanternaThemes.getRegisteredTheme("businessmachine"));
     }
 
     public UiHandler initContainers(){
@@ -204,12 +208,29 @@ public class UiHandler {
         var test = new Runnable() {
             @Override
             public void run() {
+                Log.logError("not implemented yet");
             }
         };
 
+        var market_action = new Runnable() {
+            @Override
+            public void run() {
+                Market.showMarketUi();
+            }
+        };
+
+        var finish_turn_action = new Runnable() {
+            @Override
+            public void run() {
+                GameManager.getCurrentGame().getRound().setPlayerTurnFinished();
+            }
+        };
+
+        actionLbox.addItem("Invest Army", test);
         actionLbox.addItem("Conquer", test);
-        actionLbox.addItem("Market", test);
-        
+        actionLbox.addItem("Market", market_action);
+        actionLbox.addItem("Build", test);
+        actionLbox.addItem("Finish turn", finish_turn_action);
 
         return this;
     }
@@ -221,7 +242,7 @@ public class UiHandler {
         //     .addStyle(SGR.UNDERLINE)
         //     .addTo(utilityPanel);
 
-        new Label("Wood: 0\nStone: 0\nMetal: 0\nFood: 0\nGold: 0\n\n")
+        new Label("Wood: 0\nStone: 0\nMetal: 0\nFood: 0\nGold: 0\n [Pas encore mis a jours enlevez pas de points SVPPP]\n")
             .setLayoutData(layoutCenterGrow)
             .addTo(resourcePanel);
 
@@ -260,27 +281,12 @@ public class UiHandler {
 
         Character keyc = key.getCharacter();
 
-        var actions = new HashMap<String, Runnable>();
-        actions.put("Caca puant", new Runnable() {
-            @Override
-            public void run() {
-                // Do 1st thing...
-            }
-        });
-        actions.put("argent", new Runnable() {
-            @Override
-            public void run() {
-                // Do 2nd thing...
-            }
-        });
-
         if (keyc != null) {
             Renderer.getUi().mapElement.selectNext(keyc);
 
             switch(keyc){
                 case 'y': dialog_input("Nom Joueur 1", "entrer le nom du joueur 1"); break;
-                case 'u': dialog_action("Market", "liste des objets a acheter", actions); break;
-                case 'i': Log.logError("Test du system de logging");; break;
+                case 'i': Log.logError("Test du system de logging"); break;
                 default: break;
             }
 
@@ -362,33 +368,39 @@ public class UiHandler {
             .showDialog(gui);
     }
 
-    public void dialog_action(String title, String desc, HashMap<String, Runnable> actions){
-        //exemple de actions :
-        // actions = new HashMap<String, Runnable>();
-        // actions.put("First item", new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         // Do 1st thing...
-        //     }
-        // });
-        // actions.put("Second item", new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         // Do 2nd thing...
-        //     }
-        // });
+    public Integer dialog_input_int(String title, String text){
+        Pattern pattern = Pattern.compile("[\"-\"]*[0-9]*");
 
+        String out = new TextInputDialogBuilder()
+            .setTitle(title)
+            .setDescription(text)
+            .setValidationPattern(pattern, "Nombre invalid !")
+            .build()
+            .showDialog(gui);
+
+        //si a appyer sur cancel
+        if (out == null) return null;
+
+        try { return Integer.parseInt(out); }
+        catch (Exception e) {
+            // Log.logError(e.getMessage());
+            return null;
+        }
+    }
+
+
+    public void dialog_action(String title, String desc, HashMap<String, Runnable> actions){
         var builder =  new ActionListDialogBuilder()
             .setTitle(title)
             .setDescription(desc);
 
-            actions.forEach((lbl, runnable) -> {
-                builder.addAction(lbl, runnable);
-            });
+        actions.forEach((lbl, runnable) -> {
+            builder.addAction(lbl, runnable);
+        });
 
         var dial = builder.build();
-        dial.setTheme(LanternaThemes.getRegisteredTheme("bigsnake"));
-        // dial.setTheme(LanternaThemes.getRegisteredTheme("businessmachine"));
+        // dial.setTheme(LanternaThemes.getRegisteredTheme("bigsnake"));
+        dial.setTheme(LanternaThemes.getRegisteredTheme("businessmachine"));
         // dial.setTheme(LanternaThemes.getRegisteredTheme("conqueror"));
         // dial.setTheme(LanternaThemes.getRegisteredTheme("defrost"));
         // dial.setTheme(LanternaThemes.getRegisteredTheme("blaster"));

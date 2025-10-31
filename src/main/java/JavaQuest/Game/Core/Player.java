@@ -27,9 +27,10 @@ public final class Player {
         return this.resources;
     }
 
-    public Player(int id, String name){
+    public Player(int id, String name, ANSI color){
         this.id = id;
         this.name = name;
         this.resources = new ResourceHandler();
+        this.color = color;
     }
 }
