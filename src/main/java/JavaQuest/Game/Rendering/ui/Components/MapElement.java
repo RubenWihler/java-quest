@@ -47,29 +47,19 @@ public class MapElement extends Panel {
     public MapElement(){
         super();
         this.elements = new HashMap<>();
+
     }
 
-    public void selectNext(char key){
-        int x = 0, y = 0;
-
-        if (selectedTileElement != null){
-            x = selectedTileElement.x;
-            y = selectedTileElement.y;
-        }
-
-        switch(key){
-            case 'd': x += 1; break;
-            case 'a': x -= 1; break;
-            case 'w': y -= 1; break;
-            case 's': y += 1; break;
-            default: break;
-        }
-
+    public Tile selectTile(int x, int y){
+        //todo changer les valeur en dur: 19 en map.getSize().x ou truc comme ca
         if (x < 0 || x > 19 || y < 0 || y > 19) {
-            return;
+            return null;
         }
 
-        setSelectedTile(map.getAt(x, y));
+        var tile = map.getAt(x, y);
+        setSelectedTile(tile);
+
+        return tile;
     }
 
     public void update(Map map){

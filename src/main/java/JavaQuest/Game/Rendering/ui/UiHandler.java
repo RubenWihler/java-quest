@@ -33,9 +33,12 @@ import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Core.Map.Map;
 import JavaQuest.Game.Core.Map.Tile;
 import JavaQuest.Game.Core.Market.Market;
+import JavaQuest.Game.Core.Resources.ResourceHandler;
+import JavaQuest.Game.Inputs.InputManager;
 import JavaQuest.Game.Rendering.Renderer;
 import JavaQuest.Game.Rendering.ui.Components.GameInfoElement;
 import JavaQuest.Game.Rendering.ui.Components.MapElement;
+import JavaQuest.Game.Rendering.ui.Components.RessourceElement;
 
 public class UiHandler {
     private Terminal term;
@@ -49,7 +52,7 @@ public class UiHandler {
     public Panel tilePanel;
     public Panel actionPanel;
     public Panel utilityPanel;
-    public Panel resourcePanel;
+    public RessourceElement resourceElement;
     public MapElement mapElement;
     public GameInfoElement gameInfoElement;
     public ActionListBox actionLbox;
@@ -58,6 +61,7 @@ public class UiHandler {
     public static LayoutData layoutFillGrow = LinearLayout.createLayoutData(LinearLayout.Alignment.Fill, LinearLayout.GrowPolicy.CanGrow);
     public static LayoutData layoutEndGrow = LinearLayout.createLayoutData(LinearLayout.Alignment.End, LinearLayout.GrowPolicy.CanGrow);
     public static LayoutData layoutCenterGrow = LinearLayout.createLayoutData(LinearLayout.Alignment.Center, LinearLayout.GrowPolicy.CanGrow);
+    public static LayoutData layoutCenter = LinearLayout.createLayoutData(LinearLayout.Alignment.Center, LinearLayout.GrowPolicy.None);
     public static LayoutData layoutFill = LinearLayout.createLayoutData(LinearLayout.Alignment.Fill, LinearLayout.GrowPolicy.None);
     public static LayoutData layoutStart = LinearLayout.createLayoutData(LinearLayout.Alignment.Beginning, LinearLayout.GrowPolicy.None);
     public static LayoutData layoutEnd = LinearLayout.createLayoutData(LinearLayout.Alignment.End, LinearLayout.GrowPolicy.None);
@@ -106,7 +110,7 @@ public class UiHandler {
 
         actionPanel = new Panel()
             .setLayoutManager(new LinearLayout(Direction.VERTICAL))
-            .setPreferredSize(new TerminalSize(110,30))
+            .setPreferredSize(new TerminalSize(110,200))
             .setLayoutData(layoutEnd);
 
         mapElement = (MapElement)new MapElement()
@@ -122,12 +126,25 @@ public class UiHandler {
             );
 
         gameInfoElement = (GameInfoElement)new GameInfoElement()
-            .setLayoutManager(new LinearLayout(Direction.VERTICAL))
+            .setLayoutManager(new GridLayout(1)
+                .setHorizontalSpacing(5)
+                .setVerticalSpacing(1)
+                .setBottomMarginSize(1)
+                .setTopMarginSize(2)
+                .setRightMarginSize(1)
+                .setLeftMarginSize(5))
             .setPreferredSize(new TerminalSize(80,30))
             .setLayoutData(layoutFillGrow);
 
-        resourcePanel = new Panel()
-            .setLayoutManager(new LinearLayout(Direction.VERTICAL).setSpacing(10))
+        resourceElement = (RessourceElement)new RessourceElement()
+            // .setLayoutManager(new LinearLayout(Direction.VERTICAL).setSpacing(1))
+            .setLayoutManager(new GridLayout(1)
+                .setHorizontalSpacing(5)
+                .setVerticalSpacing(1)
+                .setBottomMarginSize(1)
+                .setTopMarginSize(2)
+                .setRightMarginSize(1)
+                .setLeftMarginSize(5))
             .setPreferredSize(new TerminalSize(80,30))
             .setLayoutData(layoutFillGrow);
 
@@ -165,7 +182,7 @@ public class UiHandler {
             .addComponent(actionPanel);
 
         utilityPanel
-            .addComponent(resourcePanel.withBorder(Borders.singleLine("Resources")))
+            .addComponent(resourceElement.withBorder(Borders.singleLine("Resources")))
             .addComponent(gameInfoElement.withBorder(Borders.singleLine("Game Infos")));
 
         actionPanel
@@ -176,35 +193,7 @@ public class UiHandler {
         return this;
     }
 
-    public UiHandler initTile(){
-        // new Label("Tile editor:")
-        //     .setLayoutData(layoutCenterGrow)
-        //     .addStyle(SGR.BOLD)
-        //     .addStyle(SGR.UNDERLINE)
-        //     .addTo(tilePanel);
-
-        // new Label("Biome: [BIOME_NAME]\nOwner: [PLAYER-NAME]\nBuild: [BUILD]")
-        //     .setLayoutData(layoutCenterGrow)
-        //     .addTo(tilePanel);
-
-        // new Label("Owner: [PLAYER-NAME]")
-        //     .setLayoutData(layoutCenterGrow)
-        //     .addTo(tilePanel);
-        //
-        // new Label("Build: [BUILD]")
-        //     .setLayoutData(layoutCenterGrow)
-        //     .addTo(tilePanel);
-
-        return this;
-    }
-
     public UiHandler initAction() throws IOException {
-        // new Label("Action:")
-        //     .setLayoutData(layoutCenterGrow)
-        //     .addStyle(SGR.BOLD)
-        //     .addStyle(SGR.UNDERLINE)
-        //     .addTo(actionPanel);
-
         var test = new Runnable() {
             @Override
             public void run() {
@@ -226,26 +215,16 @@ public class UiHandler {
             }
         };
 
-        actionLbox.addItem("Invest Army", test);
-        actionLbox.addItem("Conquer", test);
+        actionLbox.addItem("*Invest Army", test);
+        actionLbox.addItem("*Conquer", test);
         actionLbox.addItem("Market", market_action);
-        actionLbox.addItem("Build", test);
+        actionLbox.addItem("*Build", test);
         actionLbox.addItem("Finish turn", finish_turn_action);
 
         return this;
     }
 
     public UiHandler initUtility(){
-        // new Label("Utility:")
-        //     .setLayoutData(layoutCenterGrow)
-        //     .addStyle(SGR.BOLD)
-        //     .addStyle(SGR.UNDERLINE)
-        //     .addTo(utilityPanel);
-
-        new Label("Wood: 0\nStone: 0\nMetal: 0\nFood: 0\nGold: 0\n [Pas encore mis a jours enlevez pas de points SVPPP]\n")
-            .setLayoutData(layoutCenterGrow)
-            .addTo(resourcePanel);
-
         var test = new Panel()
             .setLayoutManager(new LinearLayout(Direction.VERTICAL))
             .setPreferredSize(new TerminalSize(80,30))
@@ -254,7 +233,6 @@ public class UiHandler {
         testBtn = new Button("test").addTo(test);
         new Button("test2").addTo(test);
 
-        
         utilityPanel.addComponent(test.withBorder(Borders.singleLine("Army")));
 
         return this;
@@ -282,14 +260,7 @@ public class UiHandler {
         Character keyc = key.getCharacter();
 
         if (keyc != null) {
-            Renderer.getUi().mapElement.selectNext(keyc);
-
-            switch(keyc){
-                case 'y': dialog_input("Nom Joueur 1", "entrer le nom du joueur 1"); break;
-                case 'i': Log.logError("Test du system de logging"); break;
-                default: break;
-            }
-
+            InputManager.getInstance().processInput(keyc);
         }
 
         gui.handleInput(key);
@@ -309,6 +280,11 @@ public class UiHandler {
 
     public UiHandler updateMap(Map map){
         mapElement.update(map);
+        return this;
+    }
+
+    public UiHandler updateRessource(ResourceHandler rh){
+        resourceElement.update(rh);
         return this;
     }
 

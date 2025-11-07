@@ -6,4 +6,4 @@ public abstract class Build {
     public int defenseBonus = 0;
     public int resourceQuantity;
     public ResourceType resourceType;
-} 
+}

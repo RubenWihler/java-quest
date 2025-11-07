@@ -16,7 +16,7 @@ import JavaQuest.Game.Core.Map.Tiles.Water;
 import JavaQuest.Game.Core.Resources.ResourceHandler;
 import JavaQuest.Game.Core.Resources.ResourceType;
 
-public class Tile {
+public abstract class Tile {
     protected int x, y;
     protected Player owner;
     protected Build build;
