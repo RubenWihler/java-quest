@@ -201,6 +201,13 @@ public class UiHandler {
             }
         };
 
+        var test_error = new Runnable() {
+            @Override
+            public void run() {
+                throw new RuntimeException("Testing error display!");
+            }
+        };
+
         var market_action = new Runnable() {
             @Override
             public void run() {
@@ -215,11 +222,12 @@ public class UiHandler {
             }
         };
 
-        actionLbox.addItem("*Invest Army", test);
-        actionLbox.addItem("*Conquer", test);
-        actionLbox.addItem("Market", market_action);
-        actionLbox.addItem("*Build", test);
-        actionLbox.addItem("Finish turn", finish_turn_action);
+        actionLbox.addItem("Invest Army", test);
+        actionLbox.addItem("Conquer", test);
+        actionLbox.addItem("*Market", market_action);
+        actionLbox.addItem("Build", test);
+        actionLbox.addItem("*Test Throw Fatal Error", test_error);
+        actionLbox.addItem("*Finish turn", finish_turn_action);
 
         return this;
     }

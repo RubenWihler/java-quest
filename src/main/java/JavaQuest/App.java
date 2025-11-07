@@ -14,9 +14,10 @@ public class App {
         config.mapWidth = 20;
         config.playerCount = 2;
 
-        Renderer.init();
-        InputManager.init();
-        var game = GameManager.init().newGame(config);
+        var renderer = Renderer.init();
+        var inputManager = InputManager.init();
+        var gm = GameManager.init();
+        var game = gm.newGame(config);
 
         try {
             game.start();
@@ -33,6 +34,6 @@ public class App {
             Log.logError(sb.toString());
         }
 
-        Renderer.getInstance().destroy();
+        renderer.destroy();
     }
 }

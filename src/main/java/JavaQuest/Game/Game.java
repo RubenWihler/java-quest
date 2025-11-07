@@ -110,9 +110,13 @@ public final class Game {
         //ui popup
         for (int i = 0; i < this.config.playerCount; i++){
             var color = player_color_by_id.get(i);
-            String player_name = Renderer.getUi().dialog_input(
-                "Player " + (i+1) + " Name",
-                "Enter name for player " + (i+1) + ":");
+            String player_name = null;
+
+            while (player_name == null){
+                player_name = Renderer.getUi().dialog_input(
+                    "Player " + (i+1) + " Name",
+                    "Enter name for player " + (i+1) + ":");
+            }
 
             this.players.add(new Player(i, player_name, color));
         }

@@ -1,6 +1,5 @@
 package JavaQuest.Game.Core;
 
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.TextColor.ANSI;
 
 import JavaQuest.Game.Core.Resources.ResourceHandler;
