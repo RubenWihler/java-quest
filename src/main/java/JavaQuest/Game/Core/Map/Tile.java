@@ -49,6 +49,11 @@ public abstract class Tile {
         return this.build;
     }
 
+    public boolean setBuild(Build build){
+        this.build = build;
+        return true;
+    }
+
     public ANSI getColor(){
         return ANSI.DEFAULT;
     }
@@ -72,13 +77,15 @@ public abstract class Tile {
             rh.add(this.resourceType, this.resourceQuantity);
         }
 
-        if (this.build != null){
-            rh.add(this.build.resourceType, this.build.resourceQuantity);
+        if (this.build != null && this.build.resourcesBonus != null){
+            this.build.resourcesBonus.forEach((rtype, quantity) -> {
+                rh.add(rtype, quantity);
+            });
         }
     }
 
     public String getSymbol(){
-        return "?";
+        return "";
     }
 
     public static Tile getRandom(Random rand, int x, int y){

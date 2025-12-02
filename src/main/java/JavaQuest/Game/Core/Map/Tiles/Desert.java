@@ -17,7 +17,7 @@ public class Desert extends Tile {
     @Override
     public String getSymbol(){
         // return "⛏♜";
-        return "";
+        return super.getSymbol();
     }
 
     @Override

@@ -22,16 +22,7 @@ public class App {
         try {
             game.start();
         } catch (Exception e) {
-            var sb = new StringBuilder();
-
-            sb.append(e.toString() + "\n");
-            sb.append("stack trace:\n");
-
-            for (var ste : e.getStackTrace()) {
-                sb.append(ste.toString() + "\n");
-            }
-
-            Log.logError(sb.toString());
+            Log.logException(e);
         }
 
         renderer.destroy();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="JavaQuest.AppTest" time="0.019" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="JavaQuest.AppTest" time="0.038" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/home/wihler/.local/share/mise/installs/java/25.0.0/lib"/>
-    <property name="sun.java.command" value="/home/wihler/labs/java/java-quest/target/surefire/surefirebooter-20251003140813377_3.jar /home/wihler/labs/java/java-quest/target/surefire 2025-10-03T14-08-13_331-jvmRun1 surefire-20251003140813377_1tmp surefire_0-20251003140813377_2tmp"/>
+    <property name="sun.java.command" value="/home/wihler/labs/java/java-quest/target/surefire/surefirebooter-20251202191658873_3.jar /home/wihler/labs/java/java-quest/target/surefire 2025-12-02T19-16-58_789-jvmRun1 surefire-20251202191658873_1tmp surefire_0-20251202191658873_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/wihler/labs/java/java-quest/target/test-classes:/home/wihler/labs/java/java-quest/target/classes:/home/wihler/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/home/wihler/.m2/repository/com/googlecode/lanterna/lanterna/3.1.1/lanterna-3.1.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,13 +27,13 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/wihler/labs/java/java-quest/target/surefire/surefirebooter-20251003140813377_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/wihler/labs/java/java-quest/target/surefire/surefirebooter-20251202191658873_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25+36-3489"/>
     <property name="user.name" value="wihler"/>
     <property name="stdout.encoding" value="UTF-8"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="6.16.10-arch1-1"/>
+    <property name="os.version" value="6.17.8-arch1-1"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
@@ -54,5 +54,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testApp" classname="JavaQuest.AppTest" time="0.001"/>
+  <testcase name="testApp" classname="JavaQuest.AppTest" time="0.004"/>
 </testsuite>

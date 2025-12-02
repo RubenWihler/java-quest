@@ -12,10 +12,23 @@ public class Log {
         btns.add(MessageDialogButton.Ignore);
         btns.add(MessageDialogButton.Close);
 
-        switch (Renderer.getUi().dialog("Error", msg, btns)) {
-            case MessageDialogButton.Ignore: break;
+        switch (Renderer.getUi().dialogError("Error", msg, btns)) {
             case MessageDialogButton.Close: throw new RuntimeException(msg);
+            case MessageDialogButton.Ignore: break;
             default: break;
         }
+    }
+
+    public static void logException(Exception e){
+        var sb = new StringBuilder();
+
+        sb.append(e.toString() + "\n");
+        sb.append("stack trace:\n");
+
+        for (var ste : e.getStackTrace()) {
+            sb.append(ste.toString() + "\n");
+        }
+
+        Log.logError(sb.toString());
     }
 }

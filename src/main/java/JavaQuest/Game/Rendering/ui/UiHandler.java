@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import java.nio.charset.StandardCharsets;
+
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.TextColor.ANSI;
 import com.googlecode.lanterna.bundle.LanternaThemes;
@@ -32,6 +34,7 @@ import JavaQuest.Game.GameManager;
 import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Core.Map.Map;
 import JavaQuest.Game.Core.Map.Tile;
+import JavaQuest.Game.Core.Map.Builds.Build;
 import JavaQuest.Game.Core.Market.Market;
 import JavaQuest.Game.Core.Resources.ResourceHandler;
 import JavaQuest.Game.Inputs.InputManager;
@@ -68,8 +71,13 @@ public class UiHandler {
     public static LayoutData layoutStartGrow = LinearLayout.createLayoutData(LinearLayout.Alignment.Beginning, LinearLayout.GrowPolicy.CanGrow);
 
     public UiHandler() throws IOException {
-        term = new DefaultTerminalFactory()
-            .createTerminal();
+        DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory(
+            System.out, 
+            System.in, 
+            StandardCharsets.UTF_8
+        );
+
+        term = defaultTerminalFactory.createTerminal();
 
         // term.setMouseCaptureMode(MouseCaptureMode.CLICK_RELEASE_DRAG);
         screen = new TerminalScreen(term);
@@ -215,6 +223,13 @@ public class UiHandler {
             }
         };
 
+        var build_action = new Runnable(){
+            @Override
+            public void run() {
+                Build.showBuildUi();
+            }
+        };
+
         var finish_turn_action = new Runnable() {
             @Override
             public void run() {
@@ -225,7 +240,7 @@ public class UiHandler {
         actionLbox.addItem("Invest Army", test);
         actionLbox.addItem("Conquer", test);
         actionLbox.addItem("*Market", market_action);
-        actionLbox.addItem("Build", test);
+        actionLbox.addItem("*Build", build_action);
         actionLbox.addItem("*Test Throw Fatal Error", test_error);
         actionLbox.addItem("*Finish turn", finish_turn_action);
 
@@ -328,6 +343,22 @@ public class UiHandler {
     }
 
     public MessageDialogButton dialog(String title, String desc, List<MessageDialogButton> btns){
+        var builder = new MessageDialogBuilder()
+            .setTitle(title)
+            .setText(desc);
+
+        btns.forEach((btn) -> builder.addButton(btn));
+
+        var dial = builder.build();
+        // dial.setTheme(LanternaThemes.getRegisteredTheme("bigsnake"));
+        dial.setTheme(LanternaThemes.getRegisteredTheme("businessmachine"));
+        // dial.setTheme(LanternaThemes.getRegisteredTheme("conqueror"));
+        // dial.setTheme(LanternaThemes.getRegisteredTheme("defrost"));
+        // dial.setTheme(LanternaThemes.getRegisteredTheme("blaster"));
+        return dial.showDialog(gui);
+    }
+
+    public MessageDialogButton dialogError(String title, String desc, List<MessageDialogButton> btns){
         var builder = new MessageDialogBuilder()
             .setTitle(title)
             .setText(desc);

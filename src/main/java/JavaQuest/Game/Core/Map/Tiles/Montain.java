@@ -16,7 +16,7 @@ public class Montain extends Tile {
 
     @Override
     public String getSymbol(){
-        return "⛰";
+        return super.getSymbol();
     }
 
     @Override

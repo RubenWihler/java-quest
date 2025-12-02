@@ -1,6 +1,7 @@
 package JavaQuest.Game.Inputs;
 
 import JavaQuest.Exceptions.*;
+import JavaQuest.Game.Core.Map.Builds.Build;
 import JavaQuest.Game.Core.Market.Market;
 import JavaQuest.Game.Rendering.Renderer;
 import JavaQuest.Log;
@@ -37,9 +38,9 @@ public class InputManager {
             case 'd': processTileNavigation(keyc); break;
 
             case 'm': Market.showMarketUi(); break;
+            case 'b': Build.showBuildUi(); break;
             default: break;
         }
-
     }
 
     private void processTileNavigation(Character keyc){

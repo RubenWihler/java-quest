@@ -16,8 +16,7 @@ public class Forest extends Tile {
 
     @Override
     public String getSymbol(){
-        // return "▒";
-        return "";
+        return super.getSymbol();
     }
 
     @Override

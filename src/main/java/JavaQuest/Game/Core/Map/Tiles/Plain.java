@@ -17,7 +17,7 @@ public class Plain extends Tile {
     @Override
     public String getSymbol(){
         // return "░";
-        return "";
+        return super.getSymbol();
     }
 
     @Override
