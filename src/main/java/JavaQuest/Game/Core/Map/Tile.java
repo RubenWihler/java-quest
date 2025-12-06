@@ -5,9 +5,9 @@ import java.util.Random;
 import com.googlecode.lanterna.TextColor.ANSI;
 
 import JavaQuest.Game.GameManager;
-import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Rendering.*;
-import JavaQuest.Game.Core.Map.Builds.Build;
+import JavaQuest.Game.Core.Player;
+import JavaQuest.Game.Core.Map.Build;
 import JavaQuest.Game.Core.Map.Tiles.Desert;
 import JavaQuest.Game.Core.Map.Tiles.Forest;
 import JavaQuest.Game.Core.Map.Tiles.Montain;
@@ -85,6 +85,14 @@ public abstract class Tile {
     }
 
     public String getSymbol(){
+        if (this.build != null){
+            return this.build.symbol;
+        }
+
+        if (this.owner != null){
+            return "╳╳";
+        }
+
         return "";
     }
 

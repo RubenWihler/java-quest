@@ -3,7 +3,7 @@ package JavaQuest.Game.Core.Map.Tiles;
 import com.googlecode.lanterna.TextColor.ANSI;
 
 import JavaQuest.Game.Core.Map.Tile;
-import JavaQuest.Game.Core.Map.Builds.Build;
+import JavaQuest.Game.Core.Map.Build;
 
 public class Water extends Tile {
     public Water(int x, int y) {
@@ -17,7 +17,8 @@ public class Water extends Tile {
 
     @Override
     public String getSymbol(){
-        return "␥";
+        return super.getSymbol();
+        // return "␥";
     }
 
     @Override

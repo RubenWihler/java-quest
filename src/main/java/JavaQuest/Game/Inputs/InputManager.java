@@ -1,7 +1,7 @@
 package JavaQuest.Game.Inputs;
 
 import JavaQuest.Exceptions.*;
-import JavaQuest.Game.Core.Map.Builds.Build;
+import JavaQuest.Game.Core.Map.Build;
 import JavaQuest.Game.Core.Market.Market;
 import JavaQuest.Game.Rendering.Renderer;
 import JavaQuest.Log;

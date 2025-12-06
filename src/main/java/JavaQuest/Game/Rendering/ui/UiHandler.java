@@ -34,7 +34,7 @@ import JavaQuest.Game.GameManager;
 import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Core.Map.Map;
 import JavaQuest.Game.Core.Map.Tile;
-import JavaQuest.Game.Core.Map.Builds.Build;
+import JavaQuest.Game.Core.Map.Build;
 import JavaQuest.Game.Core.Market.Market;
 import JavaQuest.Game.Core.Resources.ResourceHandler;
 import JavaQuest.Game.Inputs.InputManager;

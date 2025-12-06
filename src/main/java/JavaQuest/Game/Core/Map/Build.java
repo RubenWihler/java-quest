@@ -1,4 +1,4 @@
-package JavaQuest.Game.Core.Map.Builds;
+package JavaQuest.Game.Core.Map;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +11,12 @@ import JavaQuest.Log;
 import JavaQuest.Game.GameManager;
 import JavaQuest.Game.Core.Player;
 import JavaQuest.Game.Core.Map.Tile;
+import JavaQuest.Game.Core.Map.Builds.Farm;
+import JavaQuest.Game.Core.Map.Builds.Sawmill;
+import JavaQuest.Game.Core.Map.Builds.Mine;
+import JavaQuest.Game.Core.Map.Builds.Market;
+import JavaQuest.Game.Core.Map.Builds.Barricade;
+import JavaQuest.Game.Core.Map.Builds.Outpost;
 import JavaQuest.Game.Core.Resources.ResourceType;
 import JavaQuest.Game.Rendering.Renderer;
 

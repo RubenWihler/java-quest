@@ -16,7 +16,13 @@ public class Montain extends Tile {
 
     @Override
     public String getSymbol(){
-        return super.getSymbol();
+        var s = super.getSymbol();
+
+        if (s.length() == 0){
+            return "░░";
+        }
+
+        return s;
     }
 
     @Override

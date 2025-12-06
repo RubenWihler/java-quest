@@ -62,7 +62,16 @@ public final class Game {
         p2_initial_tiles.forEach((t) -> t.setOwner(p2));
 
         p1.getResourceHandler().add(ResourceType.Gold, 1000);
+        p1.getResourceHandler().add(ResourceType.Food, 100);
+        p1.getResourceHandler().add(ResourceType.Wood, 100);
+        p1.getResourceHandler().add(ResourceType.Stone, 100);
+        p1.getResourceHandler().add(ResourceType.Metal, 100);
+
         p2.getResourceHandler().add(ResourceType.Gold, 1000);
+        p2.getResourceHandler().add(ResourceType.Food, 100);
+        p2.getResourceHandler().add(ResourceType.Wood, 100);
+        p2.getResourceHandler().add(ResourceType.Stone, 100);
+        p2.getResourceHandler().add(ResourceType.Metal, 100);
     }
 
     public GameConfig getConfig(){

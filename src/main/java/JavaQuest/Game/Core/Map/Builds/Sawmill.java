@@ -2,6 +2,7 @@ package JavaQuest.Game.Core.Map.Builds;
 
 import java.util.Map;
 
+import JavaQuest.Game.Core.Map.Build;
 import JavaQuest.Game.Core.Resources.ResourceType;
 
 public class Sawmill extends Build {

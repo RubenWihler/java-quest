@@ -37,10 +37,7 @@ public class TileElement extends Panel {
     }
 
     public void unselect(){
-        var owner = tile.getOwner();
-        ANSI colorBg = (owner != null) ? owner.getColor() : tile.getColor();
-        ANSI colorFg = (owner != null) ? owner.getColor() : ANSI.WHITE;
-        this.setTheme(new SimpleTheme(colorFg, colorBg));
+        this.setDefaultColor();
     }
  
     public TileElement(Tile tile, int x, int y){
@@ -49,17 +46,21 @@ public class TileElement extends Panel {
         this.x = x;
         this.y = y;
 
-        Player owner = tile.getOwner();
-        ANSI colorFg = (owner != null) ? owner.getColor() : ANSI.WHITE;
-        ANSI colorBg = (owner != null) ? owner.getColor() : tile.getColor();
-        Theme theme = new SimpleTheme(colorFg, colorBg);
-
         this.setLayoutData(GridLayout.createLayoutData(Alignment.FILL, Alignment.FILL))
-            .setPreferredSize(new TerminalSize(2, 1))
-            .setTheme(theme);
+            .setPreferredSize(new TerminalSize(2, 1));
 
         this.addComponent(new Label(tile.getSymbol()));
-        // this.setRenderer(new Button.FlatButtonRenderer());
+
+        this.setDefaultColor();
+    }
+
+    private void setDefaultColor(){
+        Player owner = tile.getOwner();
+        ANSI colorFg = (owner != null) ? owner.getColor() : ANSI.WHITE;
+        ANSI colorBg = /*(owner != null) ? owner.getColor() :*/ tile.getColor();
+        Theme theme = new SimpleTheme(colorFg, colorBg);
+
+        this.setTheme(theme);
     }
 
     // @Override
