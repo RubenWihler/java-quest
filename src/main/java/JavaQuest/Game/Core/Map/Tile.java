@@ -7,6 +7,7 @@ import com.googlecode.lanterna.TextColor.ANSI;
 import JavaQuest.Game.GameManager;
 import JavaQuest.Game.Rendering.*;
 import JavaQuest.Game.Core.Player;
+import JavaQuest.Game.Core.Army.Squad;
 import JavaQuest.Game.Core.Map.Build;
 import JavaQuest.Game.Core.Map.Tiles.Desert;
 import JavaQuest.Game.Core.Map.Tiles.Forest;
@@ -18,15 +19,18 @@ import JavaQuest.Game.Core.Resources.ResourceType;
 
 public abstract class Tile {
     protected int x, y;
-    protected Player owner;
-    protected Build build;
-    protected ResourceType resourceType = null;
-    protected int resourceQuantity = 0;
     protected int baseDefense = 0;
+    protected int resourceQuantity = 0;
+    protected ResourceType resourceType = null;
+    protected Biome biome;
+    protected Build build;
+    protected Player owner;
+    protected Squad squad;
 
     public Tile(int x, int y){
         this.x = x;
         this.y = y;
+        this.squad = new Squad();
     }
 
     public int getX(){
@@ -37,8 +41,16 @@ public abstract class Tile {
         return this.y;
     }
 
+    public Biome getBiome(){
+        return this.biome;
+    }
+
     public Player getOwner(){
         return this.owner;
+    }
+
+    public Squad getSquad(){
+        return this.squad;
     }
 
     public void setOwner(Player owner){
@@ -56,10 +68,6 @@ public abstract class Tile {
 
     public ANSI getColor(){
         return ANSI.DEFAULT;
-    }
-
-    public String getBiome(){
-        return "None";
     }
 
     public int getDefense(){

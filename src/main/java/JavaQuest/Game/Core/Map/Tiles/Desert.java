@@ -2,11 +2,13 @@ package JavaQuest.Game.Core.Map.Tiles;
 
 import com.googlecode.lanterna.TextColor.ANSI;
 
+import JavaQuest.Game.Core.Map.Biome;
 import JavaQuest.Game.Core.Map.Tile;
 
 public class Desert extends Tile {
     public Desert(int x, int y) {
         super(x, y);
+        this.biome = Biome.Desert;
     }
 
     @Override
@@ -18,10 +20,5 @@ public class Desert extends Tile {
     public String getSymbol(){
         // return "⛏♜";
         return super.getSymbol();
-    }
-
-    @Override
-    public String getBiome(){
-        return "Desert";
     }
 }

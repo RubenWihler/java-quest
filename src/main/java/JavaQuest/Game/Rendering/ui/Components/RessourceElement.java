@@ -47,7 +47,7 @@ public final class RessourceElement extends Panel {
 
     public void update(ResourceHandler rh){
         ressourceLabels.forEach((r, lbl) -> {
-            lbl.setText(ResourceType.getSymbol(r) + " " + r.toString() + ": " + rh.get(r));
+            lbl.setText(r.getSymbol() + " " + r.toString() + ": " + rh.get(r));
         });
     }
 

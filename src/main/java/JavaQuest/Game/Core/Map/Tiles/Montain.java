@@ -2,11 +2,13 @@ package JavaQuest.Game.Core.Map.Tiles;
 
 import com.googlecode.lanterna.TextColor.ANSI;
 
+import JavaQuest.Game.Core.Map.Biome;
 import JavaQuest.Game.Core.Map.Tile;
 
 public class Montain extends Tile {
     public Montain(int x, int y) {
         super(x, y);
+        this.biome = Biome.Forest;
     }
 
     @Override
@@ -23,10 +25,5 @@ public class Montain extends Tile {
         }
 
         return s;
-    }
-
-    @Override
-    public String getBiome(){
-        return "Montain";
     }
 }

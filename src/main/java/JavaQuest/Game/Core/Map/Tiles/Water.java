@@ -3,11 +3,13 @@ package JavaQuest.Game.Core.Map.Tiles;
 import com.googlecode.lanterna.TextColor.ANSI;
 
 import JavaQuest.Game.Core.Map.Tile;
+import JavaQuest.Game.Core.Map.Biome;
 import JavaQuest.Game.Core.Map.Build;
 
 public class Water extends Tile {
     public Water(int x, int y) {
         super(x, y);
+        this.biome = Biome.Water;
     }
 
     @Override
@@ -25,10 +27,5 @@ public class Water extends Tile {
     public boolean setBuild(Build build){
         //on ne peut pas contruire sur l'eau
         return false;
-    }
-
-    @Override
-    public String getBiome(){
-        return "Water";
     }
 }

@@ -10,8 +10,7 @@ public class UiBuilder {
     public UiBuilder() throws IOException {
         ui = new UiHandler()
             .initContainers()
-            .initAction()
-            .initUtility();
+            .initAction();
     }
 
     public UiHandler Build(){

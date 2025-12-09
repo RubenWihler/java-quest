@@ -9,8 +9,19 @@ public enum ResourceType {
     Metal,
     Gold;
 
-    public static String getSymbol(ResourceType rtype){
-        return getSymbols().get(rtype);
+    @Override
+    public String toString(){
+        return switch(this){
+            case Food -> "Food";
+            case Wood -> "Wood";
+            case Stone -> "Stone";
+            case Metal -> "Metal";
+            case Gold -> "Gold";
+        };
+    }
+
+    public String getSymbol(){
+        return getSymbols().get(this);
     }
 
     public static Map<ResourceType, String> getSymbols(){

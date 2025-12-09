@@ -32,13 +32,17 @@ import JavaQuest.Log;
 import JavaQuest.Game.Game;
 import JavaQuest.Game.GameManager;
 import JavaQuest.Game.Core.Player;
+import JavaQuest.Game.Core.Army.ArmyHandler;
+import JavaQuest.Game.Core.Army.ArmyUi;
 import JavaQuest.Game.Core.Map.Map;
 import JavaQuest.Game.Core.Map.Tile;
+import JavaQuest.Game.Core.Map.Biome;
 import JavaQuest.Game.Core.Map.Build;
 import JavaQuest.Game.Core.Market.Market;
 import JavaQuest.Game.Core.Resources.ResourceHandler;
 import JavaQuest.Game.Inputs.InputManager;
 import JavaQuest.Game.Rendering.Renderer;
+import JavaQuest.Game.Rendering.ui.Components.ArmyElement;
 import JavaQuest.Game.Rendering.ui.Components.GameInfoElement;
 import JavaQuest.Game.Rendering.ui.Components.MapElement;
 import JavaQuest.Game.Rendering.ui.Components.RessourceElement;
@@ -56,6 +60,7 @@ public class UiHandler {
     public Panel actionPanel;
     public Panel utilityPanel;
     public RessourceElement resourceElement;
+    public ArmyElement armyElement;
     public MapElement mapElement;
     public GameInfoElement gameInfoElement;
     public ActionListBox actionLbox;
@@ -156,6 +161,17 @@ public class UiHandler {
             .setPreferredSize(new TerminalSize(80,30))
             .setLayoutData(layoutFillGrow);
 
+        armyElement = (ArmyElement)new ArmyElement()
+            // .setLayoutManager(new LinearLayout(Direction.VERTICAL).setSpacing(1))
+            .setLayoutManager(new GridLayout(1)
+                .setHorizontalSpacing(5)
+                .setVerticalSpacing(1)
+                .setBottomMarginSize(1)
+                .setTopMarginSize(2)
+                .setRightMarginSize(1)
+                .setLeftMarginSize(5))
+            .setPreferredSize(new TerminalSize(80,30))
+            .setLayoutData(layoutFillGrow);
 
         tilePanel = new Panel()
             .setLayoutManager(new GridLayout(2)
@@ -191,7 +207,8 @@ public class UiHandler {
 
         utilityPanel
             .addComponent(resourceElement.withBorder(Borders.singleLine("Resources")))
-            .addComponent(gameInfoElement.withBorder(Borders.singleLine("Game Infos")));
+            .addComponent(gameInfoElement.withBorder(Borders.singleLine("Game Infos")))
+            .addComponent(armyElement.withBorder(Borders.singleLine("Army")));
 
         actionPanel
             .addComponent(actionLbox.withBorder(Borders.singleLine("Actions")));
@@ -216,6 +233,13 @@ public class UiHandler {
             }
         };
 
+        var army_action = new Runnable() {
+            @Override
+            public void run() {
+                ArmyUi.showRecruitment();
+            }
+        };
+
         var market_action = new Runnable() {
             @Override
             public void run() {
@@ -237,26 +261,12 @@ public class UiHandler {
             }
         };
 
-        actionLbox.addItem("Invest Army", test);
+        actionLbox.addItem("*Recruit Army", army_action);
         actionLbox.addItem("Conquer", test);
         actionLbox.addItem("*Market", market_action);
         actionLbox.addItem("*Build", build_action);
         actionLbox.addItem("*Test Throw Fatal Error", test_error);
         actionLbox.addItem("*Finish turn", finish_turn_action);
-
-        return this;
-    }
-
-    public UiHandler initUtility(){
-        var test = new Panel()
-            .setLayoutManager(new LinearLayout(Direction.VERTICAL))
-            .setPreferredSize(new TerminalSize(80,30))
-            .setLayoutData(layoutFillGrow);
-
-        testBtn = new Button("test").addTo(test);
-        new Button("test2").addTo(test);
-
-        utilityPanel.addComponent(test.withBorder(Borders.singleLine("Army")));
 
         return this;
     }
@@ -311,6 +321,12 @@ public class UiHandler {
         return this;
     }
 
+    public UiHandler updateArmy(ArmyHandler ah){
+        armyElement.update(ah);
+        return this;
+    }
+
+
     public UiHandler updateTile(Tile tile){
         tilePanel.removeAllComponents();
 
@@ -325,7 +341,7 @@ public class UiHandler {
         ANSI colorBg = tile.getColor();
 
         String cordStr  = tile.getX() + "x " + tile.getY() + "y";
-        String biomeStr = tile.getBiome();
+        String biomeStr = Biome.getName(tile.getBiome());
         String ownerStr = (tile.getOwner() != null) ? tile.getOwner().getName() : "None";
 
         new Panel()
