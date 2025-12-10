@@ -53,6 +53,10 @@ public abstract class Tile {
         return this.squad;
     }
 
+    public void setSquad(Squad squad){
+        this.squad = squad;
+    }
+
     public void setOwner(Player owner){
         this.owner = owner;
     }

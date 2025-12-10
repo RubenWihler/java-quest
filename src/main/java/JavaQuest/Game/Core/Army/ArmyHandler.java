@@ -21,6 +21,10 @@ public class ArmyHandler{
         WarUnitType.getAllRecruitmentCost().forEach((type, _) -> this.units.put(type, 0));
     }
 
+    public Map<WarUnitType, Integer> getUnits(){
+        return this.units;
+    }
+
     public Integer getUnitCount(WarUnitType type){
         return this.units.get(type);
     }
@@ -43,18 +47,20 @@ public class ArmyHandler{
     }
 
     //retourn false si l'arme ne contient pas assez de troupe
-    public boolean moveUnitsToTile(WarUnitType type, int count, Tile tile){
+    public boolean moveUnitsToSquad(WarUnitType type, int count, Squad squad){
         if (this.removeUnits(type, count)){
-            tile.getSquad().addUnits(type, count);
+            squad.addUnits(type, count);
             return true;
         }
-
         return false;
     }
 
-    public void recoverUnitsFromTile(Tile tile){
-        tile.getSquad().units.forEach((type, count) -> this.addUnits(type, count));
-        tile.getSquad().units.clear();
+    public boolean recoverUnitsFromSquad(WarUnitType type, int count, Squad squad){
+        if (squad.removeUnits(type, count)){
+            this.addUnits(type, count);
+            return true;
+        }
+        return false;
     }
 
     // public boolean attackTile(Squad squad, Tile tile){

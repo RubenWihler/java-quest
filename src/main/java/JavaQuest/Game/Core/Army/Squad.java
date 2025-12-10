@@ -21,6 +21,17 @@ public final class Squad {
         }
     }
 
+    public boolean removeUnits(WarUnitType type, int count){
+        int old_count = this.units.getOrDefault(type, 0);
+        if (old_count < count){
+            return false;
+        }
+
+        this.units.put(type, old_count - count);
+        this.units.entrySet().removeIf((entry) -> entry.getValue() == 0);
+        return true;
+    }
+
     //self est l'attaquant other est en defense
     //si puissance egal -> defense gagne
     //retourn true si l'attaque a resussi (self a gagner)

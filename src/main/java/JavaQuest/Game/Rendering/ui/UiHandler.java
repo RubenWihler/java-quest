@@ -233,10 +233,17 @@ public class UiHandler {
             }
         };
 
-        var army_action = new Runnable() {
+        var recruit_action = new Runnable() {
             @Override
             public void run() {
                 ArmyUi.showRecruitment();
+            }
+        };
+
+        var army_action = new Runnable() {
+            @Override
+            public void run() {
+                ArmyUi.showArmyTileAction();
             }
         };
 
@@ -261,12 +268,12 @@ public class UiHandler {
             }
         };
 
-        actionLbox.addItem("*Recruit Army", army_action);
-        actionLbox.addItem("Conquer", test);
-        actionLbox.addItem("*Market", market_action);
-        actionLbox.addItem("*Build", build_action);
-        actionLbox.addItem("*Test Throw Fatal Error", test_error);
-        actionLbox.addItem("*Finish turn", finish_turn_action);
+        actionLbox.addItem("Recruit Army", recruit_action);
+        actionLbox.addItem("Army tile action", army_action);
+        actionLbox.addItem("Market", market_action);
+        actionLbox.addItem("Build", build_action);
+        actionLbox.addItem("Test Throw Fatal Error", test_error);
+        actionLbox.addItem("Finish turn", finish_turn_action);
 
         return this;
     }
