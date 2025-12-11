@@ -1,6 +1,7 @@
 package JavaQuest.Game.Inputs;
 
 import JavaQuest.Exceptions.*;
+import JavaQuest.Game.Core.Army.ArmyUi;
 import JavaQuest.Game.Core.Map.Build;
 import JavaQuest.Game.Core.Market.Market;
 import JavaQuest.Game.Rendering.Renderer;
@@ -28,17 +29,17 @@ public class InputManager {
 
     public void processInput(Character keyc){
         switch(keyc){
-            case 'y': Renderer.getUi().dialog_input("Test", "entrer du text"); break;
-            case 'i': Log.logError("Test du system de logging"); break;
-
             //Tile Navigation WASD
             case 'w': 
             case 'a':
             case 's': 
             case 'd': processTileNavigation(keyc); break;
 
+            //shortcut
             case 'm': Market.showMarketUi(); break;
             case 'b': Build.showBuildUi(); break;
+            case 'r': ArmyUi.showRecruitment(); break;
+            case 'f': ArmyUi.showArmyTileAction(); break;
             default: break;
         }
     }

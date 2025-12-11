@@ -51,7 +51,18 @@ public class Market {
         var actions = new HashMap<String, Runnable>();
 
         getAvailableItems().forEach((rtype, cost) -> {
-            actions.put(rtype.toString() + ": " + cost.toString(), new Runnable() {
+            var sb = new StringBuilder();
+            sb.append(rtype);
+            sb.append(":");
+
+            for (int i = 0; i < 20 - (rtype.toString().length() + cost.toString().length()); i++)
+                sb.append(" ");
+
+            sb.append(cost);
+            sb.append(" ");
+            sb.append(ResourceType.Gold.getSymbol());
+
+            actions.put(sb.toString(), new Runnable() {
                 @Override
                 public void run() {
                     showItemBuyUi(rtype);

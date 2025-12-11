@@ -14,6 +14,14 @@ public final class Squad {
         this.units = new HashMap<>();
     }
 
+    public int getTotalPower(Biome biome){
+        return units.entrySet().stream().mapToInt(entry -> {
+            int quantity = entry.getValue();
+            var behavior = entry.getKey().getBehavior();
+            return behavior.getPower(biome) * quantity;
+        }).sum();
+    }
+
     public void addUnits(WarUnitType type, int count){
         Integer old_count = this.units.putIfAbsent(type, count);
         if (old_count != null){
@@ -74,13 +82,5 @@ public final class Squad {
         }
 
         return getTotalPower(biome);
-    }
-
-    private int getTotalPower(Biome biome){
-        return units.entrySet().stream().mapToInt(entry -> {
-            int quantity = entry.getValue();
-            var behavior = entry.getKey().getBehavior();
-            return behavior.getPower(biome) * quantity;
-        }).sum();
     }
 }

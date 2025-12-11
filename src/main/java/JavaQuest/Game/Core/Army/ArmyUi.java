@@ -15,11 +15,11 @@ import JavaQuest.Game.Core.Resources.ResourceType;
 import JavaQuest.Game.Rendering.Renderer;
 
 //  [OK] achat de troupes
-//  [] envoyer des troupes sur une case
-//  [] recuperer les troupes sur une case pour les remetre dans l'armee
+//  [OK] envoyer des troupes sur une case
+//  [OK] recuperer les troupes sur une case pour les remetre dans l'armee
 //
-//  [] creation d'une squad
-//  [] attaquer une case ennemie
+//  [OK] creation d'une squad
+//  [OK] attaquer une case ennemie
 public final class ArmyUi {
 
     public static void showRecruitment(){
@@ -297,7 +297,7 @@ public final class ArmyUi {
         var rh = player.getResourceHandler();
 
         boolean playerHaveResources = type.getRecruitmentCost().entrySet().stream()
-            .allMatch((entry) -> rh.get(entry.getKey()) >= entry.getValue());
+            .allMatch((entry) -> rh.get(entry.getKey()) >= entry.getValue() * count);
 
         if (!playerHaveResources){
             Renderer.getUi().dialog(

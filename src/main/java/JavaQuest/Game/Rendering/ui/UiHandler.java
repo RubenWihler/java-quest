@@ -226,13 +226,6 @@ public class UiHandler {
             }
         };
 
-        var test_error = new Runnable() {
-            @Override
-            public void run() {
-                throw new RuntimeException("Testing error display!");
-            }
-        };
-
         var recruit_action = new Runnable() {
             @Override
             public void run() {
@@ -272,7 +265,6 @@ public class UiHandler {
         actionLbox.addItem("Army tile action", army_action);
         actionLbox.addItem("Market", market_action);
         actionLbox.addItem("Build", build_action);
-        actionLbox.addItem("Test Throw Fatal Error", test_error);
         actionLbox.addItem("Finish turn", finish_turn_action);
 
         return this;
@@ -337,19 +329,17 @@ public class UiHandler {
     public UiHandler updateTile(Tile tile){
         tilePanel.removeAllComponents();
 
-        // new Label("Tile editor:")
-        //             .setLayoutData(layoutCenterGrow)
-        //             .addStyle(SGR.BOLD)
-        //             .addStyle(SGR.UNDERLINE)
-        //             .addTo(tilePanel);
-
+        Player currentPlayer = GameManager.getCurrentGame().getRound().getCurrentPlayer();
         Player owner = tile.getOwner();
         ANSI colorFg = (owner != null) ? owner.getColor() : ANSI.WHITE;
         ANSI colorBg = tile.getColor();
 
-        String cordStr  = tile.getX() + "x " + tile.getY() + "y";
-        String biomeStr = Biome.getName(tile.getBiome());
-        String ownerStr = (tile.getOwner() != null) ? tile.getOwner().getName() : "None";
+        var sb = new StringBuilder();
+        sb.append("Coord: " + tile.getX() + "x " + tile.getY() + "y");
+        sb.append("\nBiome: " + Biome.getName(tile.getBiome()));
+        sb.append("\nOwner: " + ((tile.getOwner() != null) ? tile.getOwner().getName() : "None"));
+        sb.append("\nBuild: " + ((tile.getBuild() != null) ? tile.getBuild() : "None"));
+        sb.append("\nPower: " + ((tile.getOwner() == currentPlayer) ? tile.getTotalPower() : "???"));
 
         new Panel()
             .setLayoutData(layoutFill)
@@ -357,7 +347,7 @@ public class UiHandler {
             .setPreferredSize(new TerminalSize(18,10))
             .addTo(tilePanel);
 
-        new Label("\n\n\nCoord: " + cordStr + "\nBiome: " + biomeStr + "\nOwner: " + ownerStr + "\nBuild: None")
+        new Label("\n\n\n" + sb)
             .setLayoutData(layoutFillGrow)
             .setPreferredSize(new TerminalSize(20,15))
             .addTo(tilePanel);

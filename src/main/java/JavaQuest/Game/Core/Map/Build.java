@@ -78,6 +78,11 @@ public abstract class Build {
         Renderer.getUi().dialog_action("Build", "Select a build to construct", actions);
     }
 
+    @Override
+    public String toString(){
+        return this.name;
+    }
+
     private static boolean ConstructBuild(Build build, Tile tile){
         var player = GameManager.getCurrentGame().getRound().getCurrentPlayer();
         var rh = player.getResourceHandler();

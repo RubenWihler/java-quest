@@ -70,6 +70,10 @@ public abstract class Tile {
         return true;
     }
 
+    public int getTotalPower(){
+        return this.getDefense() + this.squad.getTotalPower(this.biome);
+    }
+
     public ANSI getColor(){
         return ANSI.DEFAULT;
     }
@@ -109,7 +113,7 @@ public abstract class Tile {
     }
 
     public static Tile getRandom(Random rand, int x, int y){
-        int type = rand.nextInt(8);
+        int type = rand.nextInt(9);
 
         switch(type){
             case 0: return new Plain(x, y);
@@ -117,9 +121,11 @@ public abstract class Tile {
             case 2: return new Plain(x, y);
             case 3: return new Forest(x, y);
             case 4: return new Forest(x, y);
-            case 5: return new Montain(x, y);
-            case 6: return new Water(x, y);
-            case 7: return new Desert(x, y);
+            case 5: return new Forest(x, y);
+            case 6: return new Montain(x, y);
+            case 7: return new Water(x, y);
+            case 8: return new Desert(x, y);
+            case 9: return new Desert(x, y);
         }
 
         return new Plain(x, y);

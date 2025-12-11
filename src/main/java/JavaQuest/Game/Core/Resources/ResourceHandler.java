@@ -15,7 +15,7 @@ public class ResourceHandler {
     }
 
     public int get(ResourceType type) {
-        return this.resources.get(type);
+        return this.resources.getOrDefault(type, 0);
     }
 
     public boolean add(ResourceType type, int quantity) {
