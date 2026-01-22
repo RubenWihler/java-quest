@@ -214,7 +214,7 @@ This project is created for educational purposes as part of an OOP course.
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [Your GitHub](https://github.com/your-username)
+- **Wihler Ruben** - [GitHub](https://github.com/RubenWihler/)
 
 ---
 
