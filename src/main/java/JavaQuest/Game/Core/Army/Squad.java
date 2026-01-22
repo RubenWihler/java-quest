@@ -59,7 +59,7 @@ public final class Squad {
 
     //calcule les pertes (unitee morte au combat) pour une puissance donne
     //retourn ce qui reste de la squad sous form de puissance total
-    private int removePower(int lost_power, Biome biome) {
+    public int removePower(int lost_power, Biome biome) {
         if (getTotalPower(biome) < lost_power){
             this.units.clear();
             return 0;

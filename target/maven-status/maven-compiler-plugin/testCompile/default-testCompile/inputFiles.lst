@@ -1,0 +1,12 @@
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/AppTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Army/ArmyHandlerTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Army/SquadTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Army/WarUnitTypeTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Map/Builds/BuildTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Map/MapBuilderTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Map/MapTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Map/TileTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Map/Tiles/BiomeTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Market/MarketTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/PlayerTest.java
+/home/wihler/labs/java/java-quest/src/test/java/JavaQuest/Game/Core/Resources/ResourceHandlerTest.java

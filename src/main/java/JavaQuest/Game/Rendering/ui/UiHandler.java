@@ -320,8 +320,8 @@ public class UiHandler {
         return this;
     }
 
-    public UiHandler updateArmy(ArmyHandler ah){
-        armyElement.update(ah);
+    public UiHandler updateArmy(Player player, Map map){
+        armyElement.update(player, map.getTiles());
         return this;
     }
 

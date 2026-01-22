@@ -45,7 +45,7 @@ public final class Round {
                     .updateGameInfo(game)
                     .updateMap(map)
                     .updateRessource(player.getResourceHandler())
-                    .updateArmy(player.getArmyHandler())
+                    .updateArmy(player, map)
                     .refresh()
                     .pollEvents()
                     .refresh();
