@@ -2,8 +2,6 @@ package JavaQuest.Game.Core.Army;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 

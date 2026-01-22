@@ -30,9 +30,9 @@ public class InputManager {
     public void processInput(Character keyc){
         switch(keyc){
             //Tile Navigation WASD
-            case 'w': 
+            case 'w':
             case 'a':
-            case 's': 
+            case 's':
             case 'd': processTileNavigation(keyc); break;
 
             //shortcut
